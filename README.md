@@ -1,4 +1,4 @@
-# 🧪 MixUp_팀명 : Grammar Error Correction Promptathon 
+# 🧪 MixUp_푸바오 : Grammar Error Correction Promptathon 
 
 본 레포지토리는 Grammar Error Correction Promptathon  실험을 재현하고 확장하기 위한 코드 및 가이드를 제공합니다.
 
@@ -8,11 +8,26 @@
 
 * **목표**: ex. Solar Pro API를 활용하여 프롬프트 만으로 한국어 맞춤법 교정 성능을 개선한다. 
 * **접근 전략**:
-
-  * ex. 오류 유형별 대응 전략 수립 → 반복 실험을 통해 개선
+  * 두 가지 종류의 scoring 방식으로 출력 문장을 평가한다.
+    <br>
+    
+   <img src="https://github.com/user-attachments/assets/a49d3b10-865c-4bc8-916c-da3660513bc2" width=70% />
+   
+  * **Method 1**: `Similarity`, `Fluency`, `Typo` 기반으로, 두 개의 `candidate output`을 비교한다.
+  * **Method 2**: 모델 API 를 호출하여 두 개의 `candidate output`을 비교한다.
+    <br>
+    
+  
 * **주요 실험 내용**:
-
-  * 실험 진행 방식 작성
+  * 영어 `system prompt`와 한국어 `system prompt` 비교 평가
+  * `Role`, `Instructions`, `Example`을 모두 제공한 `system prompt`
+  * `Role`, `Example`을 모두 제공한 `system prompt`
+  * `Example`의 개수를 달리하며 만든 `system prompt`
+  * 멀티턴 실험
+  * 두 개의 서로 다른 프롬프트(1. 원본과 에러 유형 아웃풋 출력, 2. 원본 수정)
+  * `step-by-step` instruction  
+  
+    
 ---
 
 ## ⚙️ 환경 세팅 & 실행 방법
