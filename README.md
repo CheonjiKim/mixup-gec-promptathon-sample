@@ -35,7 +35,7 @@
 ### 1. 사전 준비 
 
 ```bash
-git clone https://github.com/your-org/your-repo.git
+git clone https://github.com/CheonjiKim/mixup-gec-promptathon-sample.git
 cd your-repo/experiment
 ```
 
@@ -61,13 +61,16 @@ python run_experiment.py --input sample_input.txt --output result.json
 ## 🚧 실험의 한계 및 향후 개선
 
 * **한계**:
-
-  * 긴 문장/복문에서 누락되는 오류 존재
-  * 도메인 특화 문서(법률/의료 등)에서는 성능 저하
+  
+  * Ground Truth가 올바르지 않은 문장인 경우, 학습 데이터에 대해 과대 적합 발생 가능성이 있음 (Ground truth 문장의 구두점의 비일관성, 구어체와 문어체의 혼용)
+  * 일부 문장에 대해서 여전히 맞춤법이 틀리는 경우가 존재한다. (예, `싫어 <-> 실어`, `역할을 하다 <-> 역수를 하다` 등)
+  
 * **향후 개선 방향**:
 
-  * 오류 유형 자동 분류 → 맞춤형 프롬프트 분기
-  * User Feedback loop를 통한 교정 정확도 향상
+  * 배치(batch) 연산 적용 → 빠른 교정을 위해 한 번의 query에 여러 개의 문장을 입력하고, 여러 개의 교정 문장을 받기
+  * 최고 성능을 내는 프롬프트 나열 찾기(예, 띄어쓰기 규칙 instruction, 맞춤법 규칙 instruction 중 어느 것을 윗쪽에 둘 것인지)
+  * 최상의 멀티턴 프롬프트 찾기 -> 전문가 에이전트를 다양화하여 정확한 교정 문장 얻어내기 (예, 맞춤법 위주의 전문가, 띄어쓰기 위주의 전문가, 도메인 특화 코퍼스 전문가 등으로 분화)
+  * 다양한 교정 상황을 반영하는 예시 조합 찾기
 
 ---
 
