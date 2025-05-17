@@ -77,16 +77,25 @@ python run_experiment.py --input sample_input.txt --output result.json
 ## 📂 폴더 구조
 
 ```
-📁 code/
-├── main.py              # 메인 실행 파일
-├── config.py            # 설정 파일
-├── requirements.txt     # 필요한 패키지 목록
-├── __init__.py         # 패키지 초기화 파일
-├── utils/              # 유틸리티 함수들
-│   ├── __init__.py     # utils 패키지 초기화
-│   ├── experiment.py   # 실험 실행 및 API 호출
-│   └── metrics.py      # 평가 지표 계산
-└── prompts/            # 프롬프트 템플릿 저장
-    ├── __init__.py     # prompts 패키지 초기화
-    └── templates.py    # 프롬프트 템플릿 정의
+.
+├── README.md
+├── code
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── config.py
+│   ├── main.py
+│   ├── prompts
+│   ├── requirements.txt
+│   └── utils
+├── data
+│   ├── sample_submission.csv
+│   ├── test.csv
+│   └── train.csv
+├── eda.ipynb
+├── final_prompt.py
+├── mixup-gec-promptathon-sample
+│   ├── README.md
+│   └── prompt_template_sample.json
+├── prompt_template_sample.json
+└── submission_cutter.ipynb
 ```
