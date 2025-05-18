@@ -89,7 +89,7 @@ python -m code.main
 
 ---
 ## 📜 System Prompt
-```
+```python
 TEMPLATES = {
     "best": {
         "system_prompt": """
