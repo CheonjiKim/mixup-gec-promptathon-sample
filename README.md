@@ -2,6 +2,13 @@
 
 본 레포지토리는 Grammar Error Correction Promptathon 실험을 재현하고 확장하기 위한 코드 및 가이드를 제공합니다.
 
+| 팀원 | GitHub                           |
+| --------- | ------------------------------------- |
+| 윤상민    | [github.com/vivamini7](https://github.com/vivamini7) |
+| 윤지찬    | [github.com/BETONM](https://github.com/BETONM)         |
+| 김천지    | [github.com/CheonjiKim](https://github.com/CheonjiKim)       |
+
+
 ## 📌 프로젝트 개요
 
 * **목표**: 이 프로젝트는 `Solar Pro API`를 활용하여 **프롬프트** 만으로 한국어 맞춤법을 교정하는 교정기를 만드는 프로젝트입니다.  
@@ -278,3 +285,5 @@ TEMPLATES = {
 ├── prompt_template_sample.json
 └── submission_cutter.ipynb
 ```
+
+
