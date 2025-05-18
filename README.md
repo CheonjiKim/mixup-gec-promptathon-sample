@@ -1,41 +1,44 @@
 # 🧪 MixUp_푸바오 : Grammar Error Correction Promptathon 
 
-본 레포지토리는 Grammar Error Correction Promptathon  실험을 재현하고 확장하기 위한 코드 및 가이드를 제공합니다.
+본 레포지토리는 Grammar Error Correction Promptathon 실험을 재현하고 확장하기 위한 코드 및 가이드를 제공합니다.
 
 ## 📌 프로젝트 개요
 
-* **목표**: 이 프로젝트는 `Solar Pro API`를 활용하여 **프롬프트** 만으로 한국어 맞춤법을 교정하는 교정기를 만드는 프로젝트입니다. 
-* **접근 전략**:
-  * 본 프로젝트는 두 가지 종류의 scoring 방식으로 출력 문장을 평가합니다.
-    <br><br>
-    
-   <img src="https://github.com/user-attachments/assets/a49d3b10-865c-4bc8-916c-da3660513bc2" width=70% />
-   
-  * **Method 1**: 세 종류의 매트릭인 `Similarity`, `Fluency`, `Typo`를 기반으로, 각각의 `Solar Pro API`가 출력한`output candidate #1`과 `output candidate #2`를 비교합니다.
-  ```
-     def _score_candidate(self, output: str, original_input: str) -> float:
-        sim_score = self._similarity(output, original_input)
-        fluency = self._fluency_score(output)
-        typos = self._typo_count(output)
+* **목표**: 이 프로젝트는 `Solar Pro API`를 활용하여 **프롬프트** 만으로 한국어 맞춤법을 교정하는 교정기를 만드는 프로젝트입니다.  
+* **접근 전략**:  본 프로젝트는 두 가지 종류의 scoring 방식으로 출력 문장을 평가합니다.
 
-        return (0.6 * sim_score) + (0.4 * fluency / 3) - (0.05 * typos)
-  ```
-  * **Method 2**: `Solar Pro API`를 평가자 역할로 호출하여, 각각의 `Solar Pro API`가 출력한`output candidate #1`과 `output candidate #2`를 비교합니다.
-  ```
-     def _choose_best_via_llm(self, candidate1: str, candidate2: str, original_input: str) -> str:
-        compare_prompt = {
-            "system": "다음 두 문장 중 한국어 맞춤법, 띄어쓰기, 문법이 더 정확한 문장을 선택하세요. 의미는 유지되어야 합니다. 더 나은 문장만 그대로 출력하세요.",
-            "user": f"""입력 문장: {original_input}
 
-                {candidate1}
-                {candidate2}
+  <img src="https://github.com/user-attachments/assets/a49d3b10-865c-4bc8-916c-da3660513bc2" width=80% />
+  
+**Method 1**: 세 종류의 매트릭인 `Similarity`, `Fluency`, `Typo`를 기반으로, 각각의 `Solar Pro API`가 출력한 `output candidate #1`과 `output candidate #2`를 비교합니다.
+  
+  ```python
+  def _score_candidate(self, output: str, original_input: str) -> float:
+      sim_score = self._similarity(output, original_input)
+      fluency = self._fluency_score(output)
+      typos = self._typo_count(output)
 
-                더 적절한 문장을 한 줄로 출력하세요."""
-
-         # 이하 코드 생략
-        
+      return (0.6 * sim_score) + (0.4 * fluency / 3) - (0.05 * typos)
   ```
-    <br>
+
+<br>
+
+**Method 2**: `Solar Pro API`를 평가자 역할로 호출하여, 각각의 `output candidate #1`과 `output candidate #2`를 비교합니다.
+
+```python
+def _choose_best_via_llm(self, candidate1: str, candidate2: str, original_input: str) -> str:
+    compare_prompt = {
+        "system": "다음 두 문장 중 한국어 맞춤법, 띄어쓰기, 문법이 더 정확한 문장을 선택하세요. 의미는 유지되어야 합니다. 더 나은 문장만 그대로 출력하세요.",
+        "user": f"""입력 문장: {original_input}
+
+{candidate1}
+{candidate2}
+
+더 적절한 문장을 한 줄로 출력하세요."""
+    }
+
+    # 이하 코드 생략
+  ```
     
   
 * **주요 실험 내용**:
