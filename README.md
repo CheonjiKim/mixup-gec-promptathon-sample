@@ -70,8 +70,8 @@ def _choose_best_via_llm(self, candidate1: str, candidate2: str, original_input:
  
 
 ```bash
-git clone https://github.com/CheonjiKim/mixup-gec-promptathon-sample.git
-cd your-repo/experiment
+git clone https://github.com/CheonjiKim/korean-grammar-corrector.git
+cd korean-grammar-corrector
 ```
 
 ### 라이브러리 설치
