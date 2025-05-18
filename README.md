@@ -76,7 +76,6 @@ python run_experiment.py --input sample_input.txt --output result.json
 > `--output`: 결과 저장 파일 경로
 
 ---
----
 
 ## 📜 System Prompt
 ```
