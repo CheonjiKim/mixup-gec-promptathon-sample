@@ -51,8 +51,13 @@
 ---
 
 ## ⚙️ 환경 세팅 & 실행 방법
+이 프로젝트를 실행하려면 **UPSTAGE_API_KEY**가 필요합니다.
 
-### 1. 사전 준비 
+ 1. 업스테이지(Upstage)에서 API 키를 발급받으세요.
+ 2. 프로젝트 루트 디렉토리에 `.env` 파일을 생성합니다.
+ 3. `.env` 파일에 아래 내용을 추가하세요.
+ 4. `UPSTAGE_API_KEY=your_api_key_here`
+ 
 
 ```bash
 git clone https://github.com/CheonjiKim/mixup-gec-promptathon-sample.git
@@ -68,15 +73,11 @@ pip install -r requirements.txt
 ### 실험 실행
 
 ```bash
-python run_experiment.py --input sample_input.txt --output result.json
+python -m code.main
 ```
 
-> 📎 실행 옵션 (예시):
-> `--input`: 실험 대상 파일
-> `--output`: 결과 저장 파일 경로
 
 ---
-
 ## 📜 System Prompt
 ```
 TEMPLATES = {
